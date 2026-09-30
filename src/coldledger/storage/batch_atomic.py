@@ -9,7 +9,7 @@ class Table:
         with self.lock:
             current={}
             for k,d in deltas.items():
-                if d==0:raise ValueError('zero delta')
+                if d<0:raise ValueError('zero delta')
                 r=self.rows[k]
                 if r.version!=versions[k]:raise RuntimeError('version conflict')
                 current[k]=r

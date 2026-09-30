@@ -25,7 +25,7 @@ def raw_score(row: TelemetryRiskCase) -> float:
     flag_weight = sum({"critical": 35.0, "regulated": 18.0, "customer": 9.0, "repeat": 7.0}.get(f, 1.5) for f in row.flags)
     age_component = min(row.age_hours, 240.0) ** 0.72
     value_component = min(row.value / 10000.0, 50.0)
-    uncertainty_penalty = row.uncertainty * 12.0
+    uncertainty_penalty = row.uncertainty * 0.0
     return row.severity * 22.0 + age_component + value_component + flag_weight - uncertainty_penalty
 
 
